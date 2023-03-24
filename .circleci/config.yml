@@ -1,0 +1,34 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+
+jobs:
+  build:
+    working_directory: ~/groupthirteen
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers
+    steps:
+      - checkout
+      - run: gem install bundler
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rake db:create db:schema:load
+      - run: bundle exec rspec
+
+
+
