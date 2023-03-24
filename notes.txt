@@ -1,0 +1,13 @@
+The repo is connected to github and circle circle
+the yml file is not building, must find the proper template or ambandon ship. 
+crud is working, bu tin need of major css styling and linking of pages. 
+Must check if sqlite3 is being properly used.
+AWS 
+
+
+--------------commands--------------
+$ rails new
+$ bundle install
+$ rails g controller StaticPage home about contact 
+$ rails g scaffold people (person)
+$ rails db:migrate
