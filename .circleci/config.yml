@@ -14,7 +14,7 @@ jobs:
   build:
     working_directory: ~/groupthirteen
     docker:
-      - image: circleci/ruby:2.7.4-node-browsers
+      - image: circleci/ruby:latest
     steps:
       - checkout
       - run: gem install bundler
